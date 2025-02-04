@@ -2,8 +2,9 @@ document.getElementById('translate').addEventListener('submit', function (transl
     translate.preventDefault();
     const text = document.getElementById('text').value;
     const option = document.querySelector('input[name="choice"]:checked').value;
-    const result = document.getElementById('result')
-    let decrypt = []
+    const result = document.getElementById('result');
+    let decrypt = [];
+    let encrypt = [];
     function isAlphabet(char) {
         let code = char.charCodeAt(0);
         return (code >= 65 && code <= 90) || (code >= 97 && code <= 122);
@@ -17,36 +18,71 @@ document.getElementById('translate').addEventListener('submit', function (transl
         return (code >= 97 && code <= 122);
     }
     if (option == 'encrypt') {
-        console.log(text)
+        console.log(text);
         for (let char of text) {
             if (isAlphabet(char)) {
                 if (isAlphabet(String.fromCharCode(char.charCodeAt(0) + 1)) && (isLower(char) == isLower(String.fromCharCode(char.charCodeAt(0) + 1)) || isUpper(char) == isUpper(String.fromCharCode(char.charCodeAt(0) + 1)))) {
-                    decrypt.push(String.fromCharCode(char.charCodeAt(0) + 1))
+                    encrypt.push(String.fromCharCode(char.charCodeAt(0) + 1));
                 }
                 else {
                     if (isLower(char)) //if it is a capital letter
                     {
                         if (isAlphabet((String.fromCharCode(('a'.charCodeAt(0) + 1 - ('z'.charCodeAt(0) - char.charCodeAt(0))) - 1)))) {
-                            decrypt.push(String.fromCharCode(('a'.charCodeAt(0) + 1 - ('z'.charCodeAt(0) - char.charCodeAt(0))) - 1));
+                            encrypt.push(String.fromCharCode(('a'.charCodeAt(0) + 1 - ('z'.charCodeAt(0) - char.charCodeAt(0))) - 1));
                         }
                     }
                     if (isUpper(char)) //if it is a capital letter
                     {
                         if (isAlphabet((String.fromCharCode(('A'.charCodeAt(0) + 1 - ('Z'.charCodeAt(0) - char.charCodeAt(0))) - 1)))) {
-                            decrypt.push(String.fromCharCode(('A'.charCodeAt(0) + 1 - ('Z'.charCodeAt(0) - char.charCodeAt(0))) - 1));
+                            encrypt.push(String.fromCharCode(('A'.charCodeAt(0) + 1 - ('Z'.charCodeAt(0) - char.charCodeAt(0))) - 1));
                         }
                     }
                 }
             }
             else {
-                decrypt.push(char)
+                encrypt.push(char);
+            }
+            if (char=='\n')
+            {
+                encrypt.push('<br>');
             }
         }
-        let demo = decrypt.join("")
-        console.log(demo)
-        result.innerHTML = demo
+        let demo = encrypt.join("");
+        console.log(demo);
+        result.innerHTML = demo;
     }
     else if (option == 'decrypt') {
-        //Awaiting code!
+        console.log(text);
+        for (let char of text) {
+            if (isAlphabet(char)) {
+                if (isAlphabet(String.fromCharCode(char.charCodeAt(0) - 1)) && (isLower(char) == isLower(String.fromCharCode(char.charCodeAt(0) - 1)) || isUpper(char) == isUpper(String.fromCharCode(char.charCodeAt(0) - 1)))) {
+                    decrypt.push(String.fromCharCode(char.charCodeAt(0) - 1));
+                }
+                else {
+                    if (isLower(char)) //if it is a lower case letter
+                    {
+                        if (isAlphabet((String.fromCharCode(('z'.charCodeAt(0) - 1 + (char.charCodeAt(0)-'a'.charCodeAt(0))) + 1)))) {
+                            decrypt.push(String.fromCharCode(('z'.charCodeAt(0) - 1 + (char.charCodeAt(0)-'a'.charCodeAt(0))) + 1));
+                        }
+                    }
+                    if (isUpper(char)) //if it is a upper case letter
+                    {
+                        if (isAlphabet((String.fromCharCode(('Z'.charCodeAt(0) - 1 + (char.charCodeAt(0)-'A'.charCodeAt(0))) + 1)))) {
+                            decrypt.push(String.fromCharCode(('Z'.charCodeAt(0) - 1 + (char.charCodeAt(0)-'A'.charCodeAt(0))) + 1));
+                        }
+                    }
+                }
+            }
+            else {
+                decrypt.push(char);
+            }
+            if (char=='\n')
+                {
+                    decrypt.push('<br>');
+                }
+        }
+        let demo = decrypt.join("");
+        console.log(demo);
+        result.innerHTML = demo;
     }
 });
