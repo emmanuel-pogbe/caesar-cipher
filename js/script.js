@@ -1,3 +1,30 @@
+function copyText(){
+    const textToCopy = document.getElementById('result').innerText;
+    if (textToCopy!="")
+    {
+        const popup = document.getElementById('popup')
+        const temptext = document.createElement('textarea');
+        temptext.value = textToCopy;
+        document.body.appendChild(temptext);
+        temptext.select();
+        document.execCommand('copy');
+        document.body.removeChild(temptext);
+        popup.classList.add('show');
+        popup.classList.remove('hide');
+        setTimeout(()=>{
+            popup.classList.add('hide');
+            popup.classList.remove('show');
+        }, 3000);
+    }
+    
+}
+function pasteText(){
+        navigator.clipboard.readText().then((text) => {
+            document.getElementById("text").value = text;
+        }).catch(err => {
+            console.error("Failed to paste text: ", err);
+        });
+}
 document.getElementById('translate').addEventListener('submit', function (translate) {
     translate.preventDefault();
     const text = document.getElementById('text').value;

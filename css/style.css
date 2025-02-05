@@ -105,3 +105,43 @@ textarea {
     cursor: pointer;
     background-color: rgb(221, 218, 218);
 }
+#options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: fit-content;
+    margin-top: 20px;
+}
+.cp {
+    border: blue;
+    border-radius: 4px;
+    font-size: 19px;
+    padding: 3px 10px;
+    background: white;
+}
+.cp:hover {
+    cursor: pointer;
+    background-color: rgb(221, 218, 218);
+}
+#popup {
+    position: fixed;
+    bottom: -50px;
+    opacity: 0;
+    border: none;
+    color: white;
+    background-color: rgb(99, 99, 153);
+    padding: 3px;
+    border-radius: 4px;
+    margin-left: 20px;
+    padding: 2px 30px;
+    margin-bottom: 0px;
+    transition: opacity 0.5s ease-in-out, bottom 0.5s ease-in-out;
+}
+#popup.show {
+    bottom: 20px;
+    opacity: 1;
+}
+#popup.hide {
+    bottom: -50px;
+    opacity: 0;
+}

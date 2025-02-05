@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caesar Cypher</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/288289805d.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -26,11 +27,16 @@
                     <textarea name="input" id="text" placeholder="Type here to encrypt text"></textarea>
                     <input type="submit" value="===>" class="translate">
                     <div id="result">
-                    </div>
+                    </div>                  
                 </div> 
             </form>
         </div>
     </div>
+    <div id="options">
+        <button id="paste" class="cp" onclick="pasteText()"><i class="fa-regular fa-paste"></i>Paste Text</button>
+        <button id="copy" class="cp" onclick="copyText()"><i class="fa-regular fa-copy"></i>Copy Text</button>
+    </div>
+    <label id="popup">Text Copied</label>
     <script src="./js/script.js"></script>
 </body>
 </html>
