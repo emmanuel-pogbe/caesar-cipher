@@ -1,22 +1,17 @@
 def cypher(text,shift):
-    decrypt = []
+    encrypt = []
     try:
             shift = int(shift)
             if shift>=1 and shift<=25:
                 for i in text:
                     if i.isalpha():
-                        if chr(ord(i)+shift).isalpha() and (i.islower()==chr(ord(i)+shift).islower() or i.isupper()==chr(ord(i)+shift).isupper()):
-                            decrypt.append(chr(ord(i)+shift))
-                        else:
-                            if i.islower():
-                                if chr((ord('a') + shift - (ord('z')-ord(i)))-1).isalpha():
-                                    decrypt.append(chr((ord('a') + shift - (ord('z')-ord(i)))-1))
-                            if i.isupper():
-                                if chr((ord('A') + shift - (ord('Z')-ord(i)))-1).isalpha():
-                                    decrypt.append(chr((ord('A') + shift - (ord('Z')-ord(i)))-1))
+                        if i.isupper():
+                            encrypt.append(chr((ord(i) - ord('A') + shift)%26 + ord('A')))
+                        if i.islower():
+                             encrypt.append(chr((ord(i) -ord('a')+ shift)%26 + ord('a')))
                     else:
-                        decrypt.append(i)
-                return decrypt
+                        encrypt.append(i)
+                return encrypt
             else:
                 return -1 #Invalid range of numbers
     except ValueError:

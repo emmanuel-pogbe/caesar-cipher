@@ -25,6 +25,13 @@ function pasteText(){
             console.error("Failed to paste text: ", err);
         });
 }
+document.getElementById("radioW").addEventListener("click",()=>{
+    const option = document.querySelector('input[name="choice"]:checked').value;
+    if (option=="encrypt")
+        document.getElementById("text").placeholder = "Type here to encrypt text";
+    else
+        document.getElementById("text").placeholder = "Type here to decrypt text";
+});
 document.getElementById('translate').addEventListener('submit', function (translate) {
     translate.preventDefault();
     const text = document.getElementById('text').value;
@@ -45,7 +52,6 @@ document.getElementById('translate').addEventListener('submit', function (transl
         return (code >= 97 && code <= 122);
     }
     if (option == 'encrypt') {
-        console.log(text);
         for (let char of text) {
             if (isAlphabet(char)) {
                 if (isAlphabet(String.fromCharCode(char.charCodeAt(0) + 1)) && (isLower(char) == isLower(String.fromCharCode(char.charCodeAt(0) + 1)) || isUpper(char) == isUpper(String.fromCharCode(char.charCodeAt(0) + 1)))) {
@@ -79,7 +85,6 @@ document.getElementById('translate').addEventListener('submit', function (transl
         result.innerHTML = demo;
     }
     else if (option == 'decrypt') {
-        console.log(text);
         for (let char of text) {
             if (isAlphabet(char)) {
                 if (isAlphabet(String.fromCharCode(char.charCodeAt(0) - 1)) && (isLower(char) == isLower(String.fromCharCode(char.charCodeAt(0) - 1)) || isUpper(char) == isUpper(String.fromCharCode(char.charCodeAt(0) - 1)))) {
