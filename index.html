@@ -13,7 +13,6 @@
     </header>
     <div class="container">
         <div>
-            <i></i>
             <form action="/" id="translate">
                 <div id="radioW">
                     <input type="radio" name="choice" value="encrypt" required class="selectors" id="encrypt" checked>
@@ -21,8 +20,7 @@
                     <div class="toggle-container">
                         <label for="encrypt">Encrypt</label>
                         <label for="decrypt">Decrypt</label>
-                    </div>
-                    
+                    </div>         
                 </div>   
                 <div id="texts">
                     <textarea name="input" id="text" placeholder="Type here to encrypt text"></textarea>
@@ -34,10 +32,11 @@
         </div>
     </div>
     <div id="options">
+        <button id="clear" class="cp remove" onclick="clearText()">Clear Text</button>
         <button id="paste" class="cp" onclick="pasteText()"><i class="fa-regular fa-paste"></i>Paste Text</button>
         <button id="copy" class="cp" onclick="copyText()"><i class="fa-regular fa-copy"></i>Copy Text</button>
     </div>
     <label id="popup">Text Copied</label>
-    <script src="./js/temp.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>

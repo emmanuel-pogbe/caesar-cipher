@@ -151,13 +151,17 @@ textarea {
 #result::-webkit-scrollbar, #text::-webkit-scrollbar {
     width: 8px; 
 }
-
 #result::-webkit-scrollbar-thumb, #text::-webkit-scrollbar-thumb {
     background: #333; 
     border-radius: 5px; 
 }
-
 #result::-webkit-scrollbar-thumb:hover, #text::-webkit-scrollbar-thumb:hover {
     cursor: default;
     background: #555; 
+}
+.show {
+    display: block;
+}
+.hide {
+    display: none;
 }

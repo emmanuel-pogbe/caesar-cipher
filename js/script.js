@@ -1,3 +1,8 @@
+function clearText(){
+    let inp = document.getElementById("text").value;
+    console.log(inp);
+    document.getElementById("text").value = "";
+}
 function copyText(){
     const textToCopy = document.getElementById('result').innerText;
     if (textToCopy!="")
@@ -15,8 +20,7 @@ function copyText(){
             popup.classList.add('hide');
             popup.classList.remove('show');
         }, 3000);
-    }
-    
+    } 
 }
 function pasteText(){
         navigator.clipboard.readText().then((text) => {
@@ -54,22 +58,11 @@ document.getElementById('translate').addEventListener('submit', function (transl
     if (option == 'encrypt') {
         for (let char of text) {
             if (isAlphabet(char)) {
-                if (isAlphabet(String.fromCharCode(char.charCodeAt(0) + 1)) && (isLower(char) == isLower(String.fromCharCode(char.charCodeAt(0) + 1)) || isUpper(char) == isUpper(String.fromCharCode(char.charCodeAt(0) + 1)))) {
-                    encrypt.push(String.fromCharCode(char.charCodeAt(0) + 1));
+                if (isUpper(char)) {
+                    encrypt.push(String.fromCharCode((char.charCodeAt(0)-'A'.charCodeAt(0)+1)%26 + 'A'.charCodeAt(0)))
                 }
-                else {
-                    if (isLower(char)) //if it is a capital letter
-                    {
-                        if (isAlphabet((String.fromCharCode(('a'.charCodeAt(0) + 1 - ('z'.charCodeAt(0) - char.charCodeAt(0))) - 1)))) {
-                            encrypt.push(String.fromCharCode(('a'.charCodeAt(0) + 1 - ('z'.charCodeAt(0) - char.charCodeAt(0))) - 1));
-                        }
-                    }
-                    if (isUpper(char)) //if it is a capital letter
-                    {
-                        if (isAlphabet((String.fromCharCode(('A'.charCodeAt(0) + 1 - ('Z'.charCodeAt(0) - char.charCodeAt(0))) - 1)))) {
-                            encrypt.push(String.fromCharCode(('A'.charCodeAt(0) + 1 - ('Z'.charCodeAt(0) - char.charCodeAt(0))) - 1));
-                        }
-                    }
+                if (isLower(char)) {
+                    encrypt.push(String.fromCharCode((char.charCodeAt(0)-'a'.charCodeAt(0)+1)%26 + 'a'.charCodeAt(0)))
                 }
             }
             else {
@@ -87,23 +80,12 @@ document.getElementById('translate').addEventListener('submit', function (transl
     else if (option == 'decrypt') {
         for (let char of text) {
             if (isAlphabet(char)) {
-                if (isAlphabet(String.fromCharCode(char.charCodeAt(0) - 1)) && (isLower(char) == isLower(String.fromCharCode(char.charCodeAt(0) - 1)) || isUpper(char) == isUpper(String.fromCharCode(char.charCodeAt(0) - 1)))) {
-                    decrypt.push(String.fromCharCode(char.charCodeAt(0) - 1));
+                if (isUpper(char)) {
+                    decrypt.push(String.fromCharCode((char.charCodeAt(0)-'A'.charCodeAt(0)-1)%26 + 'A'.charCodeAt(0)))
                 }
-                else {
-                    if (isLower(char)) //if it is a lower case letter
-                    {
-                        if (isAlphabet((String.fromCharCode(('z'.charCodeAt(0) - 1 + (char.charCodeAt(0)-'a'.charCodeAt(0))) + 1)))) {
-                            decrypt.push(String.fromCharCode(('z'.charCodeAt(0) - 1 + (char.charCodeAt(0)-'a'.charCodeAt(0))) + 1));
-                        }
-                    }
-                    if (isUpper(char)) //if it is a upper case letter
-                    {
-                        if (isAlphabet((String.fromCharCode(('Z'.charCodeAt(0) - 1 + (char.charCodeAt(0)-'A'.charCodeAt(0))) + 1)))) {
-                            decrypt.push(String.fromCharCode(('Z'.charCodeAt(0) - 1 + (char.charCodeAt(0)-'A'.charCodeAt(0))) + 1));
-                        }
-                    }
-                }
+                if (isLower(char)) {
+                    decrypt.push(String.fromCharCode((char.charCodeAt(0)-'a'.charCodeAt(0)-1)%26 + 'a'.charCodeAt(0)))
+                } 
             }
             else {
                 decrypt.push(char);
