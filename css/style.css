@@ -84,19 +84,74 @@ input[type="radio"]
     background-color: white;
     overflow: auto;
 }
-textarea {
-    font-size: 20px;
-    border: 1px solid black;
-    border-radius: 3px;
-    resize: none;
+#textarea-container {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
     width: 50%;
     height: 100%;
-    box-shadow: 2px 7px 7px rgba(0, 0, 0, 0.2);
     padding: 10px;
+    border: 1px solid black;
+    box-shadow: 2px 7px 7px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 3px;
+}
+#textarea-container:focus-within {
+    border: 2px solid black;
+}
+textarea {
+    font-size: 20px;
+    border: none;
+    resize: none;
+    width: 97%;
+    height: 100%;
+}
+textarea:focus {
+    border: none;
+    outline: none;
+}
+.options {
+    position: relative;
+    overflow: hidden;
+    border: blue;
+    border-radius: 40px;
+    font-size: 16px;
+    padding: 6px 25px;
+    background-color: white;
+    border: 1px solid rgb(50, 50, 173);
+}
+.options:hover {
+    cursor: pointer;
+    background-color: rgb(211, 211, 255);
+}
+.remove {
+    position: absolute;
+    top: 10px;
+    right: 6px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 0px;
+}
+.remove:hover {
+    background-color: rgb(204, 204, 204);
+}
+#paste {
+    position: absolute;
+    top: 15%;
+    left: 12px;
 }
 .translate {
     border: none;
     border-radius: 3px;
+    font-size: 18px;
     background-color: white;
     padding: 10px 5px;
     margin: 0px 1px;
@@ -112,19 +167,6 @@ textarea {
     max-width: fit-content;
     margin-top: 20px;
     background-color: rgb(230, 230, 240);
-}
-.cp {
-    border: blue;
-    border-radius: 9px;
-    font-size: 19px;
-    padding: 6px 25px;
-    background-color: rgb(230, 230, 240);
-    border: 1px solid rgb(50, 50, 173);
-    gap: 40px;
-}
-.cp:hover {
-    cursor: pointer;
-    background-color: rgb(50, 50, 173);
 }
 #popup {
     position: fixed;
@@ -164,4 +206,18 @@ textarea {
 }
 .hide {
     display: none;
+}
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(107, 101, 163, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 1s linear;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
 }

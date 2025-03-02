@@ -21,11 +21,15 @@
                         <label for="encrypt">Encrypt</label>
                         <label for="decrypt">Decrypt</label>
                     </div>
-                    <input type="number" id="shiftKey" required>         
+                    <input type="number" id="shiftKey" required value="1">         
                 </div>   
                 <div id="texts">
-                    <textarea name="input" id="text" placeholder="Type here to encrypt text"></textarea>
-                    <input type="submit" value="===>" class="translate">
+                    <div id="textarea-container">
+                        <textarea name="input" id="text" placeholder="Type here to encrypt text"></textarea>
+                        <button id="clear" class="remove" onclick="clearText()"><i class="fa-solid fa-trash"></i></button>
+                        <button id="paste" class="options pasteText" onclick="pasteText()"><i class="fa-regular fa-paste"></i> Paste Text</button>
+                    </div>      
+                    <input type="submit" value="➡" class="translate">
                     <div id="result">
                     </div>                  
                 </div> 
@@ -33,9 +37,7 @@
         </div>
     </div>
     <div id="options">
-        <button id="clear" class="cp remove" onclick="clearText()">Clear Text</button>
-        <button id="paste" class="cp" onclick="pasteText()"><i class="fa-regular fa-paste"></i>Paste Text</button>
-        <button id="copy" class="cp" onclick="copyText()"><i class="fa-regular fa-copy"></i>Copy Text</button>
+        <button id="copy" class="options" onclick="copyText()"><i class="fa-regular fa-copy"></i> Copy Text</button>
     </div>
     <label id="popup">Text Copied</label>
     <script src="./js/script.js"></script>
