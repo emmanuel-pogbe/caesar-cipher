@@ -3,6 +3,9 @@ function clearText(){
     console.log(inp);
     document.getElementById("text").value = "";
 }
+function mod(n, m) { //using external function to calculate the modulus of numbers, in cases of negative numbers
+    return ((n % m) + m) % m;
+}
 function copyText(){
     const textToCopy = document.getElementById('result').innerText;
     if (textToCopy!="")
@@ -37,6 +40,7 @@ document.getElementById("radioW").addEventListener("click",()=>{
         document.getElementById("text").placeholder = "Type here to decrypt text";
 });
 document.getElementById('translate').addEventListener('submit', function (translate) {
+    let shiftKey = document.getElementById("shiftKey").value;
     translate.preventDefault();
     const text = document.getElementById('text').value;
     const option = document.querySelector('input[name="choice"]:checked').value;
@@ -59,10 +63,11 @@ document.getElementById('translate').addEventListener('submit', function (transl
         for (let char of text) {
             if (isAlphabet(char)) {
                 if (isUpper(char)) {
-                    encrypt.push(String.fromCharCode((char.charCodeAt(0)-'A'.charCodeAt(0)+1)%26 + 'A'.charCodeAt(0)))
+                    console.log(mod(('B'.charCodeAt(0)-'A'.charCodeAt(0)+parseInt(shiftKey)),26))
+                    encrypt.push(String.fromCharCode(mod((char.charCodeAt(0)-'A'.charCodeAt(0)+parseInt(shiftKey)),26) + 'A'.charCodeAt(0)))
                 }
                 if (isLower(char)) {
-                    encrypt.push(String.fromCharCode((char.charCodeAt(0)-'a'.charCodeAt(0)+1)%26 + 'a'.charCodeAt(0)))
+                    encrypt.push(String.fromCharCode(mod((char.charCodeAt(0)-'a'.charCodeAt(0)+parseInt(shiftKey)),26) + 'a'.charCodeAt(0)))
                 }
             }
             else {
@@ -81,10 +86,11 @@ document.getElementById('translate').addEventListener('submit', function (transl
         for (let char of text) {
             if (isAlphabet(char)) {
                 if (isUpper(char)) {
-                    decrypt.push(String.fromCharCode((char.charCodeAt(0)-'A'.charCodeAt(0)-1)%26 + 'A'.charCodeAt(0)))
+                    decrypt.push(String.fromCharCode(mod((char.charCodeAt(0)-'A'.charCodeAt(0)-parseInt(shiftKey)),26) + 'A'.charCodeAt(0)))
+                        
                 }
                 if (isLower(char)) {
-                    decrypt.push(String.fromCharCode((char.charCodeAt(0)-'a'.charCodeAt(0)-1)%26 + 'a'.charCodeAt(0)))
+                    decrypt.push(String.fromCharCode(mod((char.charCodeAt(0)-'a'.charCodeAt(0)-parseInt(shiftKey)),26) + 'a'.charCodeAt(0)))
                 } 
             }
             else {
