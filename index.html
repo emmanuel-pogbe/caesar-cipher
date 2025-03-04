@@ -6,6 +6,7 @@
     <title>Caesar Cypher</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://kit.fontawesome.com/288289805d.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/svg+xml" href="./assets/encryption.svg">
 </head>
 <body>
     <header>
@@ -20,24 +21,34 @@
                     <div class="toggle-container">
                         <label for="encrypt">Encrypt</label>
                         <label for="decrypt">Decrypt</label>
-                    </div>
-                    <input type="number" id="shiftKey" required value="1">         
+                    </div>       
                 </div>   
+                <div id="shift">
+                    <label for="shiftinfo" class="shift-label">Shift Key: </label>
+                    <button id="incrementBtn" onclick="decrement()" class="change">-</button>
+                    <input type="number" id="shiftKey" required value="1" min="0" max="25" name="shiftKey">
+                    <button id="incrementBtn" onclick="increment()" class="change">+</button>
+                </div>
+                  
                 <div id="texts">
-                    <div id="textarea-container">
+                    <div id="textarea-container">   
                         <textarea name="input" id="text" placeholder="Type here to encrypt text"></textarea>
-                        <button id="clear" class="remove" onclick="clearText()"><i class="fa-solid fa-trash"></i></button>
+                        <div class="fade-overlay"></div>
+                        <button id="clear" class="remove tooltip fade" onclick="clearText()" data-title="Clear source text"><i class="fa-solid fa-trash"></i></button>
                         <button id="paste" class="options pasteText" onclick="pasteText()"><i class="fa-regular fa-paste"></i> Paste Text</button>
-                    </div>      
-                    <input type="submit" value="➡" class="translate">
-                    <div id="result">
-                    </div>                  
+                        <button type="submit" class="translate options" id="translatebtn">➡</button>
+                    </div>         
+                    <div id="result-container">
+                        <div id="result"></div>
+                        <div class="fade-overlay"></div>
+                        <button id="copy" class="copy options" onclick="copyText()"><i class="fa-regular fa-copy"></i> <span style="padding-left: 3px;">Copy</span></button>                        
+                    </div>                      
                 </div> 
             </form>
-        </div>
+        </div> 
     </div>
     <div id="options">
-        <button id="copy" class="options" onclick="copyText()"><i class="fa-regular fa-copy"></i> Copy Text</button>
+        
     </div>
     <label id="popup">Text Copied</label>
     <script src="./js/script.js"></script>

@@ -1,13 +1,30 @@
 const textarea = document.getElementById("text");
 const clearBtn = document.getElementById("clear");
 const pasteBtn = document.getElementById("paste");
+const translateBtn = document.getElementById("translatebtn");
+const copyBtn = document.getElementById('copy');
+const result = document.getElementById('result');
+function toggleCopyButton(){
+    if (result.textContent !== "") {
+        copyBtn.style.display = "block";
+    } else {
+        copyBtn.style.display = "none";
+    }
+}
+function toggleTranslateButton(){
+    if (textarea.value.trim() !== "") {
+        translateBtn.style.display = "block";
+    } else {
+        translateBtn.style.display = "none";
+    }
+}
 function toggleClearButton() {
     if (textarea.value.trim() !== "") {
         clearBtn.style.display = "block";
     } else {
         clearBtn.style.display = "none";
     }
-}
+}   
 function togglePasteButton(){
     if (textarea.value.trim()!==""){
         pasteBtn.style.display = "none";
@@ -15,20 +32,39 @@ function togglePasteButton(){
         pasteBtn.style.display = "block";       
     }
 }
+function decrement(){
+    let inputField = document.getElementById('shiftKey');
+    let currentValue = parseInt(inputField.value,10);
+    if (currentValue>0){
+        inputField.value = currentValue-1;
+    }
+}
+function increment(){
+    let inputField = document.getElementById('shiftKey');
+    let currentValue = parseInt(inputField.value,10);
+    if (currentValue<25){
+        inputField.value = currentValue + 1;
+    }
+}
 textarea.addEventListener("input", toggleClearButton); //While typing, display clear button
 textarea.addEventListener("input", togglePasteButton); //While typing, hide paste button
+textarea.addEventListener("input", toggleTranslateButton); //While typing, show translate button
 clearBtn.addEventListener("click", () => {
     textarea.value = "";
     clearBtn.style.display = "none";
     togglePasteButton();
+    toggleTranslateButton();
+    toggleCopyButton();
 });
 toggleClearButton();
+toggleTranslateButton();
+toggleCopyButton();
 
 function mod(n, m) { //using external function to calculate the modulus of numbers, in cases of negative numbers
     return ((n % m) + m) % m;
 }
 function copyText(){
-    const textToCopy = document.getElementById('result').innerText;
+    const textToCopy = result.innerText;
     if (textToCopy!="")
     {
         let popup = document.getElementById('popup')
@@ -52,6 +88,7 @@ function pasteText(){
             textarea.value = text;
             toggleClearButton();
             togglePasteButton();
+            toggleTranslateButton();
         }).catch(err => {
             console.error("Failed to paste text: ", err);
         });
@@ -69,7 +106,7 @@ document.getElementById('translate').addEventListener('submit', function (transl
     translate.preventDefault();
     const text = document.getElementById('text').value;
     const option = document.querySelector('input[name="choice"]:checked').value;
-    const result = document.getElementById('result');
+
     let decrypt = [];
     let encrypt = [];
     function isAlphabet(char) {
@@ -88,7 +125,6 @@ document.getElementById('translate').addEventListener('submit', function (transl
         for (let char of text) {
             if (isAlphabet(char)) {
                 if (isUpper(char)) {
-                    console.log(mod(('B'.charCodeAt(0)-'A'.charCodeAt(0)+parseInt(shiftKey)),26))
                     encrypt.push(String.fromCharCode(mod((char.charCodeAt(0)-'A'.charCodeAt(0)+parseInt(shiftKey)),26) + 'A'.charCodeAt(0)))
                 }
                 if (isLower(char)) {
@@ -98,14 +134,10 @@ document.getElementById('translate').addEventListener('submit', function (transl
             else {
                 encrypt.push(char);
             }
-            if (char=='\n')
-            {
-                encrypt.push('<br>');
-            }
         }
         let demo = encrypt.join("");
         console.log(demo);
-        result.innerHTML = demo;
+        result.textContent = demo;
     }
     else if (option == 'decrypt') {
         for (let char of text) {
@@ -121,15 +153,12 @@ document.getElementById('translate').addEventListener('submit', function (transl
             else {
                 decrypt.push(char);
             }
-            if (char=='\n')
-                {
-                    decrypt.push('<br>');
-                }
         }
         let demo = decrypt.join("");
         console.log(demo);
-        result.innerHTML = demo;
+        result.textContent = demo;
     }
+    toggleCopyButton();
 });
 document.querySelectorAll('.options').forEach(button => { //ripple effect!!!
     button.addEventListener('click', function (e) {
