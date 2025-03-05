@@ -24,12 +24,11 @@
                     </div>       
                 </div>   
                 <div id="shift">
-                    <label for="shiftinfo" class="shift-label">Shift Key: </label>
+                    <label for="shiftKey" class="shift-label">Shift Key </label>
                     <button id="incrementBtn" onclick="decrement()" class="change">-</button>
                     <input type="number" id="shiftKey" required value="1" min="0" max="25" name="shiftKey">
                     <button id="incrementBtn" onclick="increment()" class="change">+</button>
-                </div>
-                  
+                </div>        
                 <div id="texts">
                     <div id="textarea-container">   
                         <textarea name="input" id="text" placeholder="Type here to encrypt text"></textarea>
@@ -48,9 +47,9 @@
         </div> 
     </div>
     <div id="options">
-        
     </div>
-    <label id="popup">Text Copied</label>
+    <label class="popup">Text Copied</label>
+    <label class="popup">No content found in clipboard</label>
     <script src="./js/script.js"></script>
 </body>
 </html>
