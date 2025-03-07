@@ -84,7 +84,7 @@ input[type="radio"]
     color: blue;
     cursor: pointer;
     font-weight: 600;
-}
+  }
 .change:hover {
     color:  rgb(20, 12, 126);
 }
@@ -104,6 +104,7 @@ input[type=number] { /*Firefox*/
     width: 50px;
 }
 #texts {
+    background-color: #F8FBFD;
     display: flex;
     width: 90%;
     justify-content: center;
@@ -135,7 +136,6 @@ input[type=number] { /*Firefox*/
     position: relative;
     display: inline-block;
     margin: 0;
-    padding: 0;
     width: 50%;
     height: 100%;
     padding: 5px;
@@ -302,6 +302,7 @@ textarea:focus {
     opacity: 0;
     pointer-events: none;
     position: absolute;
+    z-index: 30;
 }
 .tooltip:after {
     border-right: 6px solid transparent;
@@ -340,3 +341,86 @@ textarea:focus {
 ::-ms-input-placeholder {
     color: rgb(112, 112, 112);
   }
+
+@media (max-width: 645px) {
+    #result, textarea {
+        font-size: 23px;
+    }
+}
+@media (max-width: 700px) {
+    header {
+        justify-content: center;
+    }
+    #texts {
+        flex-direction: column;
+        gap: 0px;
+        box-shadow: none;
+        height: 550px;
+    }
+    #result-container, #textarea-container {
+        width: 100%;
+        height: 50%;
+        border-radius: 13px;
+    }
+    #textarea-container {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin: 0;
+    }
+    #result-container {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        padding-left: 10px;
+    }
+    #paste {
+        top: 23%;
+    }
+    textarea,#result {
+        height: 82%;
+    }
+    #result-container {
+        padding-top: 10px;
+    }
+    .fade-overlay {
+        display: none;
+    }
+}
+@media (max-width: 768px) and (max-height: 1024px) and (min-height: 1000px) {
+    #texts {
+        height: 550px;
+    }
+    .fade-overlay {
+        display: none;
+    }
+}
+@media (max-width: 940px) and (max-height: 600px) {
+    #texts {
+        height: 300px;
+    }
+    #result, textarea {
+        font-size: 16px;
+    }
+    .fade-overlay {
+        display: none;
+    }
+}
+@media (max-height: 600px) {
+    .options {
+        font-size: 12px;
+        padding: 3px 12px;
+    }
+    .remove {
+        font-size: 12px;
+        padding: 4px 5px;
+    }
+    #copy {
+        font-size: 15px;
+        padding: 4px 7px;
+    }
+}
+@media  (min-width: 940px){
+    /* .options {
+        font-size: 16px;
+        padding: 6px 25px;
+    } */
+}

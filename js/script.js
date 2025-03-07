@@ -57,13 +57,13 @@ textarea.addEventListener("input", toggleClearButton); //While typing, display c
 textarea.addEventListener("input", togglePasteButton); //While typing, hide paste button
 textarea.addEventListener("input", toggleTranslateButton); //While typing, display translate button
 
-clearBtn.addEventListener("click", () => { 
+function clearText() { 
     textarea.value = "";
     clearBtn.style.display = "none";
     togglePasteButton();
     toggleTranslateButton();
     toggleCopyButton();
-});
+}
 
 toggleClearButton();
 toggleTranslateButton();
@@ -159,7 +159,6 @@ document.getElementById('translate').addEventListener('submit', function (transl
             }
         }
         let demo = encrypt.join("");
-        console.log(demo);
         result.textContent = demo;
     }
     else if (option == 'decrypt') {
@@ -177,7 +176,6 @@ document.getElementById('translate').addEventListener('submit', function (transl
             }
         }
         let demo = decrypt.join("");
-        console.log(demo);
         result.textContent = demo;
     }
     toggleCopyButton();
