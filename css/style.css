@@ -383,7 +383,7 @@ textarea:focus {
         height: 82%;
     }
     #result-container {
-        padding-top: 0px;
+        padding-top: 3px;
     }
     .fade-overlay {
         display: none;
