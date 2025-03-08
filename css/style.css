@@ -353,7 +353,7 @@ textarea:focus {
     }
     #texts {
         flex-direction: column;
-        gap: 0px;
+        gap: 20px;
         box-shadow: none;
         height: 550px;
     }
@@ -361,17 +361,21 @@ textarea:focus {
         width: 100%;
         height: 50%;
         border-radius: 13px;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+    }
+    .change {
+        font-size: 30px;
+    }
+    .shift-label {
+        font-size: 25px;
+        padding-top: 5px;
     }
     #textarea-container {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
         margin: 0;
     }
     #result-container {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
         padding-left: 10px;
-    }
+    } 
     #paste {
         top: 23%;
     }
@@ -379,7 +383,7 @@ textarea:focus {
         height: 82%;
     }
     #result-container {
-        padding-top: 10px;
+        padding-top: 0px;
     }
     .fade-overlay {
         display: none;
@@ -417,10 +421,4 @@ textarea:focus {
         font-size: 15px;
         padding: 4px 7px;
     }
-}
-@media  (min-width: 940px){
-    /* .options {
-        font-size: 16px;
-        padding: 6px 25px;
-    } */
 }
