@@ -350,12 +350,17 @@ textarea:focus {
 @media (max-width: 700px) {
     header {
         justify-content: center;
+        height: 5%;
+    }
+    h1 {
+        margin: 5px auto;
+        font-size: 20px;
     }
     #texts {
         flex-direction: column;
         gap: 20px;
         box-shadow: none;
-        height: 550px;
+        height: 500px;
     }
     #result-container, #textarea-container {
         width: 100%;
@@ -367,8 +372,8 @@ textarea:focus {
         font-size: 30px;
     }
     .shift-label {
-        font-size: 25px;
-        padding-top: 5px;
+        font-size: 20px;
+        padding-top: 6px;
     }
     #textarea-container {
         margin: 0;
